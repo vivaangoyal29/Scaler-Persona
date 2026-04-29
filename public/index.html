@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Persona Chat</title>
+
+  <style>
+    body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  width: 420px;
+  height: 600px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+h2 {
+  margin: 0;
+  padding: 16px;
+  text-align: center;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  font-size: 18px;
+}
+
+.personas {
+  display: flex;
+  gap: 6px;
+  padding: 10px;
+  justify-content: center;
+  background: #f8f9fc;
+}
+
+.personas button {
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: none;
+  background: #e5e7eb;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s ease;
+}
+
+.personas button.active {
+  background: #667eea;
+  color: white;
+}
+
+.personas button:hover {
+  background: #c7d2fe;
+}
+
+#chat {
+  flex: 1;
+  padding: 14px;
+  overflow-y: auto;
+  background: #f9fafb;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.msg {
+  max-width: 75%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 14px;
+  line-height: 1.4;
+  animation: fadeIn 0.2s ease;
+}
+
+.user {
+  align-self: flex-end;
+  background: #667eea;
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+.bot {
+  align-self: flex-start;
+  background: #e5e7eb;
+  color: #333;
+  border-bottom-left-radius: 4px;
+}
+
+.input-area {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #eee;
+  gap: 8px;
+}
+
+input {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  outline: none;
+  font-size: 14px;
+}
+
+input:focus {
+  border-color: #667eea;
+}
+
+button.send {
+  padding: 10px 14px;
+  border-radius: 50%;
+  border: none;
+  background: #667eea;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button.send:hover {
+  background: #5a67d8;
+  transform: scale(1.05);
+}
+
+button.send:active {
+  transform: scale(0.95);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>💬 Persona Chat</h2>
+
+    <div class="personas">
+      <button onclick="setPersona('anshuman', this)" class="active">Anshuman</button>
+      <button onclick="setPersona('abhimanyu', this)">Abhimanyu</button>
+      <button onclick="setPersona('kshitij', this)">Kshitij</button>
+    </div>
+
+    <div id="chat"></div>
+
+    <div class="input-area">
+      <input id="input" placeholder="Type message..." />
+      <button class="send" onclick="send()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    // 🔥 CENTRAL CONFIG (this is what you asked for)
+    const BASE_URL = "http://localhost:3000";
+
+    let persona = "anshuman";
+
+    function setPersona(p, btn) {
+      persona = p;
+
+      document.querySelectorAll(".personas button")
+        .forEach(b => b.classList.remove("active"));
+
+      btn.classList.add("active");
+    }
+
+    async function send() {
+      const input = document.getElementById("input");
+      const msg = input.value.trim();
+      if (!msg) return;
+
+      const chat = document.getElementById("chat");
+
+      chat.innerHTML += `<div class="msg user"><b>You:</b> ${msg}</div>`;
+      input.value = "";
+
+      try {
+        const res = await fetch(BASE_URL + "/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            message: msg,
+            personaId: persona
+          })
+        });
+
+        if (!res.ok) throw new Error("Request failed");
+
+        const data = await res.json();
+
+        chat.innerHTML += `
+          <div class="msg bot">
+            <b>${data.persona || "Bot"}:</b> ${data.response || "No response"}
+          </div>
+        `;
+      } catch (err) {
+        console.error(err);
+        chat.innerHTML += `<div class="msg bot">⚠️ Error connecting</div>`;
+      }
+
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    document.getElementById("input").addEventListener("keypress", (e) => {
+      if (e.key === "Enter") send();
+    });
+  </script>
+</body>
+</html>
