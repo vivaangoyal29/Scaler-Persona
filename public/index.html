@@ -6,144 +6,144 @@
 
   <style>
     body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-}
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
 
-.container {
-  width: 420px;
-  height: 600px;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
+    .container {
+      width: 420px;
+      height: 600px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
 
-h2 {
-  margin: 0;
-  padding: 16px;
-  text-align: center;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
-  font-size: 18px;
-}
+    h2 {
+      margin: 0;
+      padding: 16px;
+      text-align: center;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      font-size: 18px;
+    }
 
-.personas {
-  display: flex;
-  gap: 6px;
-  padding: 10px;
-  justify-content: center;
-  background: #f8f9fc;
-}
+    .personas {
+      display: flex;
+      gap: 6px;
+      padding: 10px;
+      justify-content: center;
+      background: #f8f9fc;
+    }
 
-.personas button {
-  padding: 6px 12px;
-  border-radius: 20px;
-  border: none;
-  background: #e5e7eb;
-  cursor: pointer;
-  font-size: 12px;
-  transition: all 0.2s ease;
-}
+    .personas button {
+      padding: 6px 12px;
+      border-radius: 20px;
+      border: none;
+      background: #e5e7eb;
+      cursor: pointer;
+      font-size: 12px;
+      transition: all 0.2s ease;
+    }
 
-.personas button.active {
-  background: #667eea;
-  color: white;
-}
+    .personas button.active {
+      background: #667eea;
+      color: white;
+    }
 
-.personas button:hover {
-  background: #c7d2fe;
-}
+    .personas button:hover {
+      background: #c7d2fe;
+    }
 
-#chat {
-  flex: 1;
-  padding: 14px;
-  overflow-y: auto;
-  background: #f9fafb;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+    #chat {
+      flex: 1;
+      padding: 14px;
+      overflow-y: auto;
+      background: #f9fafb;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
 
-.msg {
-  max-width: 75%;
-  padding: 10px 14px;
-  border-radius: 14px;
-  font-size: 14px;
-  line-height: 1.4;
-  animation: fadeIn 0.2s ease;
-}
+    .msg {
+      max-width: 75%;
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-size: 14px;
+      line-height: 1.4;
+      animation: fadeIn 0.2s ease;
+    }
 
-.user {
-  align-self: flex-end;
-  background: #667eea;
-  color: white;
-  border-bottom-right-radius: 4px;
-}
+    .user {
+      align-self: flex-end;
+      background: #667eea;
+      color: white;
+      border-bottom-right-radius: 4px;
+    }
 
-.bot {
-  align-self: flex-start;
-  background: #e5e7eb;
-  color: #333;
-  border-bottom-left-radius: 4px;
-}
+    .bot {
+      align-self: flex-start;
+      background: #e5e7eb;
+      color: #333;
+      border-bottom-left-radius: 4px;
+    }
 
-.input-area {
-  display: flex;
-  padding: 10px;
-  border-top: 1px solid #eee;
-  gap: 8px;
-}
+    .input-area {
+      display: flex;
+      padding: 10px;
+      border-top: 1px solid #eee;
+      gap: 8px;
+    }
 
-input {
-  flex: 1;
-  padding: 10px 12px;
-  border-radius: 20px;
-  border: 1px solid #ddd;
-  outline: none;
-  font-size: 14px;
-}
+    input {
+      flex: 1;
+      padding: 10px 12px;
+      border-radius: 20px;
+      border: 1px solid #ddd;
+      outline: none;
+      font-size: 14px;
+    }
 
-input:focus {
-  border-color: #667eea;
-}
+    input:focus {
+      border-color: #667eea;
+    }
 
-button.send {
-  padding: 10px 14px;
-  border-radius: 50%;
-  border: none;
-  background: #667eea;
-  color: white;
-  cursor: pointer;
-  transition: 0.2s;
-}
+    button.send {
+      padding: 10px 14px;
+      border-radius: 50%;
+      border: none;
+      background: #667eea;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+    }
 
-button.send:hover {
-  background: #5a67d8;
-  transform: scale(1.05);
-}
+    button.send:hover {
+      background: #5a67d8;
+      transform: scale(1.05);
+    }
 
-button.send:active {
-  transform: scale(0.95);
-}
+    button.send:active {
+      transform: scale(0.95);
+    }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
 
@@ -161,13 +161,13 @@ button.send:active {
 
     <div class="input-area">
       <input id="input" placeholder="Type message..." />
-      <button class="send" onclick="send()">Send</button>
+      <button class="send" onclick="send()">➤</button>
     </div>
   </div>
 
   <script>
-    // 🔥 CENTRAL CONFIG (this is what you asked for)
-    const BASE_URL = "http://localhost:3000";
+    // ✅ UPDATED: Render backend URL
+    const BASE_URL = "https://scaler-persona-7v1j.onrender.com";
 
     let persona = "anshuman";
 
@@ -200,18 +200,22 @@ button.send:active {
           })
         });
 
-        if (!res.ok) throw new Error("Request failed");
+        if (!res.ok) {
+          const text = await res.text();
+          throw new Error(text);
+        }
 
         const data = await res.json();
 
         chat.innerHTML += `
           <div class="msg bot">
-            <b>${data.persona || "Bot"}:</b> ${data.response || "No response"}
+            <b>${data.persona || "Bot"}:</b><br/>
+            ${data.response || "No response"}
           </div>
         `;
       } catch (err) {
         console.error(err);
-        chat.innerHTML += `<div class="msg bot">⚠️ Error connecting</div>`;
+        chat.innerHTML += `<div class="msg bot">⚠️ Server error</div>`;
       }
 
       chat.scrollTop = chat.scrollHeight;
