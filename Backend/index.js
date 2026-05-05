@@ -13,6 +13,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 
+app.get("/health", (req, res)=>{
+  res.status(200).send("OK");
+});
+
 // ✅ Ensure API key exists
 if (!process.env.GEMINI_API_KEY) {
   console.error("❌ GEMINI_API_KEY missing in .env");
